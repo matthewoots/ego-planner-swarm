@@ -1,0 +1,38 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/matthew/ego-planner-swarm/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/matthew/catkin_ws/devel/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/bspline_opt/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/us_ws/com/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/ddrone_task_manager/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/drone_detect/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/us_ws/edt/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/plan_manage/include/**",
+        "/home/matthew/catkin_ws/src/fisheyedepth/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/us_ws/mes/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/mockamap/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/Utils/multi_map_server/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/us_ws/nndp_cpp/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/path_searching/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/plan_env/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/Utils/pose_utils/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/Utils/quadrotor_msgs/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/so3_control/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/so3_quadrotor_simulator/include/**",
+        "/home/matthew/ego-planner-swarm/src/planner/traj_utils/include/**",
+        "/home/matthew/ego-planner-swarm/src/uav_simulator/Utils/uav_utils/include/**",
+        "/home/matthew/catkin_ws/src/leviosa_drone/us_ws/usr_console/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

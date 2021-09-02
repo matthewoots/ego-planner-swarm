@@ -15,17 +15,20 @@ namespace ego_planner
   void UniformBspline::setUniformBspline(const Eigen::MatrixXd &points, const int &order,
                                          const double &interval)
   {
+    // Control points N + 1 since 0,1,...,N
     control_points_ = points;
+    // Order = degree, in this case its 3
     p_ = order;
     interval_ = interval;
 
+    // N = control points - 1
     n_ = points.cols() - 1;
+    // m_ is the length/size of the knot vector, which is the M = N + p_ + 1
     m_ = n_ + p_ + 1;
-
+    // u_ is the knot vector of size m_
     u_ = Eigen::VectorXd::Zero(m_ + 1);
     for (int i = 0; i <= m_; ++i)
     {
-
       if (i <= p_)
       {
         u_(i) = double(-p_ + i) * interval_;
@@ -38,7 +41,9 @@ namespace ego_planner
       {
         u_(i) = u_(i - 1) + interval_;
       }
+      // printf("%lf, ",u_(i));
     }
+    // printf("\n");
   }
 
   void UniformBspline::setKnot(const Eigen::VectorXd &knot) { this->u_ = knot; }

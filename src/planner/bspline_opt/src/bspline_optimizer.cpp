@@ -508,6 +508,7 @@ namespace ego_planner
     if (segment_ids.size() == 0)
     {
       vector<std::pair<int, int>> blank_ret;
+      ROS_ERROR("control point empty, size %d",segment_ids.size());
       return blank_ret;
     }
 
