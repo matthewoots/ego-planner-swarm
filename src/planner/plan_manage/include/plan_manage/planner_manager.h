@@ -11,6 +11,7 @@
 #include <traj_utils/plan_container.hpp>
 #include <ros/ros.h>
 #include <traj_utils/planning_visualization.h>
+#include "csv-writer/include/CSVWriter.h"
 
 namespace ego_planner
 {
@@ -55,6 +56,10 @@ namespace ego_planner
     SwarmTrajData swarm_trajs_buf_;
 
   private:
+
+    string iso_time_str_file;
+    CSVWriter csv_logger;
+
     /* main planning algorithms & modules */
     PlanningVisualization::Ptr visualization_;
 

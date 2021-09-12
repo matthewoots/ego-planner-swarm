@@ -2,15 +2,23 @@
 #include <plan_manage/planner_manager.h>
 #include <thread>
 #include "visualization_msgs/Marker.h" // zx-todo
+#include "boost/date_time/posix_time/posix_time.hpp"
 
 namespace ego_planner
 {
 
   // SECTION interfaces for setup and query
 
-  EGOPlannerManager::EGOPlannerManager() {}
+  EGOPlannerManager::EGOPlannerManager() {
+    // Logger Initialization
+    boost::posix_time::ptime my_posix_time = ros::Time::now().toBoost();
+    iso_time_str_file = boost::posix_time::to_iso_extended_string(my_posix_time)+ ".csv";
+    
+  }
 
-  EGOPlannerManager::~EGOPlannerManager() {}
+  EGOPlannerManager::~EGOPlannerManager() {
+    csv_logger.writeToFile(iso_time_str_file);
+  }
 
   void EGOPlannerManager::initPlanModules(ros::NodeHandle &nh, PlanningVisualization::Ptr vis)
   {
@@ -67,7 +75,10 @@ namespace ego_planner
 
     ros::Time t_start = ros::Time::now();
     ros::Duration t_init, t_opt, t_refine;
-
+   
+    csv_logger.newRow() << "this" << "is" << "the" << "first" << "row";
+    csv_logger.newRow() << "this" << "is" << "the" << "second" << "row";
+    
     /*** STEP 1: INIT ***/
     double ts = (start_pt - local_target_pt).norm() > 0.1 ? pp_.ctrl_pt_dist / pp_.max_vel_ * 1.5 : pp_.ctrl_pt_dist / pp_.max_vel_ * 5; // pp_.ctrl_pt_dist / pp_.max_vel_ is too tense, and will surely exceed the acc/vel limits
     vector<Eigen::Vector3d> point_set, start_end_derivatives;
@@ -81,6 +92,7 @@ namespace ego_planner
 
       if (flag_first_call || flag_polyInit || flag_force_polynomial /*|| ( start_pt - local_target_pt ).norm() < 1.0*/) // Initial path generated from a min-snap traj by order.
       {
+        printf("[Using Initial Path]\n");
         flag_first_call = false;
         flag_force_polynomial = false;
 
@@ -138,7 +150,7 @@ namespace ego_planner
       }
       else // Initial path generated from previous trajectory.
       {
-
+        printf("[Not Using Initial Path]\n");
         double t;
         double t_cur = (ros::Time::now() - local_data_.start_time_).toSec();
 

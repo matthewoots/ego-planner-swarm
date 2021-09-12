@@ -1,0 +1,3 @@
+[submodule "thirdparty/csv-writer"]
+	path = thirdparty/csv-writer
+	url = https://github.com/al-eax/CSVWriter

@@ -9,6 +9,14 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3 -Wall -g")
 find_package(Eigen3 REQUIRED)
 find_package(PCL 1.7 REQUIRED)
 
+# catkin_package(CATKIN_DEPENDS message_runtime)
+catkin_package(
+ INCLUDE_DIRS include
+ LIBRARIES ego_planner
+ CATKIN_DEPENDS plan_env path_searching bspline_opt traj_utils
+#  DEPENDS system_lib
+)
+
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
@@ -22,14 +30,6 @@ find_package(catkin REQUIRED COMPONENTS
   cv_bridge
 )
 
-# catkin_package(CATKIN_DEPENDS message_runtime)
-catkin_package(
- INCLUDE_DIRS include
- LIBRARIES ego_planner
- CATKIN_DEPENDS plan_env path_searching bspline_opt traj_utils 
-#  DEPENDS system_lib
-)
-
 include_directories(
   include
   SYSTEM
@@ -38,6 +38,7 @@ include_directories(
   ${PCL_INCLUDE_DIRS}
 )
 
+include_directories(${PROJECT_SOURCE_DIR}/../../../thirdparty)
 
 add_executable(ego_planner_node
   src/ego_planner_node.cpp 
